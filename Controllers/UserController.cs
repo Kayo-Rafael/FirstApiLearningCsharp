@@ -4,10 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FirstApi.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-
-public class UserController : ControllerBase
+public class UserController : FirstApiBaseController
 {
     [HttpGet]
     [Route("{id}")] // --> Altera a URL para api/user/{id}, aceita mais parâmetros
@@ -71,9 +68,9 @@ public class UserController : ControllerBase
                 Age = 22
             }
         };
-        return Ok(response);
+        var key = GetCustomKey();
+        return Ok(key);
     }
-
 
     [HttpPut]
     [Route("change-password")] // --> Altera a URL para api/user/change-password, para evitar conflitos com o outro metodo put
